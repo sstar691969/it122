@@ -8,7 +8,7 @@ http.createServer((req,res) => {
             res.writeHead(200, {'Content-Type': 'text/plain'});
             //res.end('Willy Home page');
             break;
-        case '/abouts':
+        case '/about':
             res.writeHead(200, {'Content-Type': 'text/plain'});
             res.end('Not found');
             break;
