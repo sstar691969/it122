@@ -6,7 +6,7 @@ const car_volkwagen = [
     {id : 3, model : "Luxury cc", year : 2023, engine : 'v8', power : 'windows', ignition : 'keyless' },
     {id : 4, model : "ID.4", year : 2023, engine : 'v8', power : 'windows', ignition : 'keyless' },
     {id : 5, model : "Atlas", year : 2023, engine : 'v8', power : 'windows', ignition : 'keyless' },
-    {id : 6, model : "Iguan", year : 2023, engine : 'v8', power : 'windows', ignition : 'keyless' }
+    {id : 6, model : "Iguan", year : 2024, engine : 'v8', power : 'windows', ignition : 'keyless' }
     ];
 
     //cars.reverse();
