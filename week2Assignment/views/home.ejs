@@ -3,22 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><% Home ejs %></title>
+    <title>Home ejs</title>
 </head>
 <body>
-    <h1><%= Hello world!? %></h1>
-    <ul>
-        <% febChar.forEach(function( eachPerson){ %>
-            <li> <%= eachPerson.fname %>  <%= eachPerson.lname %> </li>
-        <% }) %>
-     
+    
+    <h2><center>2023 Volkwagen Vehicles Home Page</center></h2>
 
 
-
-
-
-
-    </ul>
+   <% car_volkwagen.forEach(function(auto) { %>
+    <li> <%= auto.model %></li>
+    
+    <% }); %>
     
 </body>
 </html>

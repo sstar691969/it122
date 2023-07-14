@@ -18,25 +18,38 @@ app.set('port', process.env.PORT || 3000);
         // send plain text response
 
     res.send(getAll());
+});
     //res.sender
 
-    // send content of 'home' view
+    // send content of 'home' view * Done dont touch
     app.get('/home', (req,res) => {
     //console.log(home);
-    let result = car_volkwagen.getAll(req.query.title);
-    //res.render('home', {car_volkwagen });
-    res.render('home',{Volkwagens: req.query.title, result: result });
+    //let result = car_volkwagen.getAll(req.query.title);
+    res.render("home",{car_volkwagen:getAll()} );
+    //res.render('');
    });
    
+   //// send content of 'home' view
+    //app.get('/home', (req,res) => {
+        //console.log(home);
+        //let result = car_volkwagen.getAll(req.query.title);
+        //res.render("home",{car_volkwagen:getAll()} );
+        //res.render('');
+       //});
+       
    
-   
-      });
 
 
-//app.get("/detail",(req,res) => {
-   // res.render("detail");
-   // });
 
+
+// note: create new variable let vehicle and create new variable getAll
+app.get("/detail/:id",(req,res) => {
+    //let vehicle = getAll.find(vehicle => vehicle.id == req.params.id)
+   //res.send("detail",auto);
+   res.send(`Info for volkwagen: $(req.params.id)`);
+    });
+    
+    
 
     app.listen(app.get('port'), () => {
         console.log('Express started'); 
