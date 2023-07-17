@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 // For security, connectionString should be in a separate file and excluded from git
-const connectionString = "mongodb+srv://it122user:2100Anderson@cluster0.oebwh9b.mongodb.net/?retryWrites=true&w=majority";
+const connectionString = "mongodb+srv://it122user:<2100Anderson@>@cluster0.oebwh9b.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.connect(connectionString, {
     dbName: 'class-itprojects',  //or "cars". collection name: cars
