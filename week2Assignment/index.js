@@ -2,6 +2,7 @@
 //import your data.js module into index.js
 import express from 'express';
 import { getAll } from "./data.js";
+import { getItem } from "./data.js";
 
 //install the express and ejs node modules
 //convert your index.js module to use Express app syntax
@@ -18,6 +19,7 @@ app.set('port', process.env.PORT || 3000);
         // send plain text response
 
     res.send(getAll());
+    //res.send(getAll());
 });
     //res.sender
 
@@ -44,9 +46,14 @@ app.set('port', process.env.PORT || 3000);
 
 // note: create new variable let vehicle and create new variable getAll
 app.get("/detail/:id",(req,res) => {
-    //let vehicle = getAll.find(vehicle => vehicle.id == req.params.id)
-   //res.send("detail",auto);
-   res.send(`Info for volkwagen: $(req.params.id)`);
+    let vehicle = getItem(req.params['id']);
+    if (vehicle) {
+       //res.render(`Info for vehicle: ${vehicle.model}`);
+       //res.render("detail",vehicle);
+    }
+
+    res.render("detail",{vehicle:vehicle});
+   //res.render(`Info for volkwagen: $(req.params.id)`);
     });
     
     

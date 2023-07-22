@@ -6,13 +6,17 @@
     <title>Home ejs</title>
 </head>
 <body>
-    
+    <a href="detail.ejs">detail page</a>
     <h2><center>2023 Volkwagen Vehicles Home Page</center></h2>
 
 
    <% car_volkwagen.forEach(function(auto) { %>
-    <li> <%= auto.model %></li>
     
+    <li>
+        <a href="/detail/<%= auto.id %>"> <%= auto.model %>
+        
+        </a>
+    </li>
     <% }); %>
     
 </body>
