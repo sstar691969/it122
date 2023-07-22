@@ -18,27 +18,14 @@ app.set('port', process.env.PORT || 3000);
         //res.status(200).json, res.render("home")(data.GetAllItems);
         // send plain text response
 
-    res.send(getAll());
+    res.render("home",{car_volkwagen:getAll()} );
     //res.send(getAll());
 });
-    //res.sender
+    
 
-    // send content of 'home' view * Done dont touch
-    app.get('/home', (req,res) => {
-    //console.log(home);
-    //let result = car_volkwagen.getAll(req.query.title);
-    res.render("home",{car_volkwagen:getAll()} );
-    //res.render('');
-   });
    
-   //// send content of 'home' view
-    //app.get('/home', (req,res) => {
-        //console.log(home);
-        //let result = car_volkwagen.getAll(req.query.title);
-        //res.render("home",{car_volkwagen:getAll()} );
-        //res.render('');
-       //});
-       
+   
+   
    
 
 
@@ -46,13 +33,14 @@ app.set('port', process.env.PORT || 3000);
 
 // note: create new variable let vehicle and create new variable getAll
 app.get("/detail/:id",(req,res) => {
-    let vehicle = getItem(req.params['id']);
-    if (vehicle) {
+    //let vehicle = getItem(req.params['id']);
+    //if (vehicle) {
        //res.render(`Info for vehicle: ${vehicle.model}`);
        //res.render("detail",vehicle);
-    }
+    //}
 
-    res.render("detail",{vehicle:vehicle});
+    //res.render("detail",{vehicle:vehicle});
+    res.render("detail",{vehicle:getItem(req.params.id)});
    //res.render(`Info for volkwagen: $(req.params.id)`);
     });
     

@@ -1,0 +1,27 @@
+{
+  "name": "week2assignment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sstar691969/WilliamAndersonIT112.git"
+  },
+  "author": "William Anderson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sstar691969/WilliamAndersonIT112/issues"
+  },
+  "homepage": "https://github.com/sstar691969/WilliamAndersonIT112#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "knex": "^2.5.0",
+    "mongoose": "^7.3.4",
+    "pg": "^8.11.1"
+  },
+  "description": ""
+}

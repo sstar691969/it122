@@ -26,7 +26,7 @@ const car_volkwagen = [
     export const getItem = (id) => {
 
         let found = car_volkwagen.find((auto) => {  
-            return auto.id === id;
+            return auto.id == id;
         });
         
             return found
