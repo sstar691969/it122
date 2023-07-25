@@ -8,7 +8,7 @@ mongoose.connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
-
+// ('open,) is corrected change below
 mongoose.connection.on('open', () => {
   console.log('Mongoose connected.');
 });
