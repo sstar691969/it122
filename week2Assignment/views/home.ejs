@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home ejs</title>
+    <link rel="stylesheet" href="http://localhost:3000/css/main.css"> 
 </head>
 <body>
-    <a href="detail.ejs">detail page</a>
-    <h2><center>2023 Volkwagen Vehicles Home Page</center></h2>
+    <a href="/detail/1">detail page</a> 
+    <h1><center>2023 Volkwagen Vehicles Home Page</center></h>
 
 
    <% car_volkwagen.forEach(function(auto) { %>
+    <!---<img src="./public/img/mercedes.jpg" alt="mercedes">--->
     
     <li>
         <a href="/detail/<%= auto.id %>"> <%= auto.model %>
