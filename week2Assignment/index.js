@@ -18,6 +18,9 @@ app.set('port', process.env.PORT || 3000);
 // Static files also added carRoute below 7/30/2023
 //app.use(vwRoute)
 app.use(express.static('public'))
+app.use(express.json()); //Used to parse JSON bodies
+
+
 //app.use('/css', express.static(dirname + 'public/css'))
 //app.use('/js', express.static(__dirname + 'public/js'))
 //app.use('/img', express.static(__dirname + 'public/img'))
@@ -29,13 +32,12 @@ app.use(express.static('public'))
 
 
 
-    app.get("/",(req,res) => {
+app.get("/",(req,res) => {
         //res.status(200).json, res.render("home")(data.GetAllItems);
         // send plain text response
-        Cars.find({}).lean()
+  Cars.find({}).lean()
   .then((cars) => {
-    
-    res.render("home",{car_volkwagen:cars})
+  res.render("home",{car_volkwagen:cars})
   })
   .catch(err => console.log(err));
     
@@ -90,18 +92,19 @@ app.get("/api/cars/delete/:id",(req,res) => {
     .catch(err => next(err));
 });
 
-
-app.post("/api/cars",(req,res) => {
-  
- 
-Cars.updateOne({'id':req.body.id}, req.body, {upsert:true}, (err, result) => {
+// use Postman app with this api post //
+// why add async(req,res) =>{}//
+app.post("/api/cars/update/id",(req,res) => {
+  Cars.updateOne({'id':req.body.id}, req.body, {upsert:true}, (err, result) => {
   if (err) return next(err);
-  console.log(result);
-// other code here
+          res.json(result);
 
+
+  })
+    .catch(err => next(err));
 });
 
-});
+
 
 
 
