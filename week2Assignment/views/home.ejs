@@ -5,21 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home ejs</title>
     <link rel="stylesheet" href="http://localhost:3000/css/main.css"> 
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
     <a href="/detail/1">detail page</a> 
     <h1><center>2023 Volkwagen Vehicles Home Page</center></h>
+    <div id="root"></div>
+    <script type= "text/babel">
 
+        let cars = <%- items %>;
+        console.log(cars)
 
-   <% car_volkwagen.forEach(function(auto) { %>
-    <!---<img src="./public/img/mercedes.jpg" alt="mercedes">--->
-    
-    <li>
-        <a href="/detail/<%= auto.id %>"> <%= auto.model %>
+    const Cars = (props) => {
+        console.log(props)
+        console.log("hello" + props.volkwagens);
+        const listItems = props.volkwagens.map(item => 
         
-        </a>
-    </li>
-    <% }); %>
+        <a href={"./detail/" + item.id }> <li key={item._id}>{item.model}</li> </a>
+        ); 
+        return <ul>{listItems}</ul>
+
+    }
+
+    ReactDOM.render(
+        <Cars volkwagens={cars}/>,
+        document.getElementById('root'));
+    
+
+</script>
+
+    
     
 </body>
 </html>

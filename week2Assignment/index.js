@@ -32,14 +32,17 @@ app.use(express.json()); //Used to parse JSON bodies
 
 
 
-app.get("/",(req,res) => {
+app.get("/",(req,res,next) => {
+    console.log(req.query);
         //res.status(200).json, res.render("home")(data.GetAllItems);
         // send plain text response
-  Cars.find({}).lean()
-  .then((cars) => {
-  res.render("home",{car_volkwagen:cars})
-  })
-  .catch(err => console.log(err));
+
+    Cars.find({}).lean()
+      .then((cars) => {
+      //res.render("home",{car_volkwagen:cars})
+  res.render("home",{items: JSON.stringify(cars)});  
+     })
+    .catch(err => console.log(err));
     
     //res.send(getAll());
 });
