@@ -20,20 +20,134 @@
         let cars = <%- items %>;
         console.log(cars)
 
-    const Cars = (props) => {
+        const Details = (props) => {
+
+            return (
+            <div>
+
+                <form>
+                    <label>Model:</label>
+
+
+                    <input
+                        type="text"
+                        required
+                        name="model"
+                        //value={props.item.power || ""} onChange={props.handleChange} /><br/>//
+                
+                    />
+                
+
+                    <label>Year:</label>
+
+                    <input
+                        type="text"
+                        name="year"
+                        //value={props.item.power || ""} onChange={props.handleChange} /><br/>//
+                
+                    />
+                
+                    <textarea
+                        required
+                    ></textarea>
+
+                    <label>Engine</label>
+                    <input
+                        type="text"
+                        
+                        name="engine"
+                        //value={props.item.power || ""} onChange={props.handleChange} /><br/>//
+                
+                    />
+                    <textarea
+                        
+                    ></textarea>
+                    <label>Power</label>
+
+                    <input
+                        type="text"
+                        
+                        name="power"
+
+                        //value={props.item.power || ""} onChange={props.handleChange} /><br/>//
+                
+                    />
+
+                    <label>Ingnition</label>
+                    <input
+                        type="text"
+                        
+                        name="ignition"
+                        //value={props.item.power || ""} onChange={props.handleChange} /><br/>//
+                
+                    />
+                    <textarea
+                        
+                    ></textarea>
+                    <select>
+                        <option value="mario">mario</option>
+                        <option value="mario">mario</option>
+                    </select>
+                
+                </form> 
+                <button>Add new vehicle</button>
+                <button name="clear" onClick={props.clearForm}>Clear</button>&nbsp;
+                <button name="save" onClick={props.saveItem}>Save</button>&nbsp;
+                <button name="delete" onClick={props.deleteItem}>Delete</button>
+                   
+            </div>
+
+            )
+
+
+
+        }
+
+       
+
+    const CarsApp = (props) => {
         console.log(props)
         console.log("hello" + props.volkwagens);
-        const listItems = props.volkwagens.map(item => 
-        
-        <a href={"./detail/" + item.id }> <li key={item._id}>{item.model}</li> </a>
-        ); 
-        return <ul>{listItems}</ul>
 
-    }
+        //line 59 of github/brenden west/it122/9_effects/views/home.ejs
+        const itemClick = (e) => {
+            console.log('item clicked')
+            console.log(e.target.innerText);
+            let found = cars.find((item) => { return item.id == e.target.innerText});
+            console.log(found)
+
+
+            
+        }
+        const listItems = props.volkwagens.map((item) => 
+        <li key={item._id} onClick={itemClick}>{item.model}</li>);
+         
+       
+        return ( 
+            <div>
+            <ul>{listItems}</ul>
+            <Details />
+            </div>
+        );
+
+
+
+      
+     }
+        
+
+
+
+       
+
+        
+    
 
     ReactDOM.render(
-        <Cars volkwagens={cars}/>,
+        <div><CarsApp volkwagens={cars}/></div>,
         document.getElementById('root'));
+
+        
     
 
 </script>
