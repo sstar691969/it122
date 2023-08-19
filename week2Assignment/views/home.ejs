@@ -22,118 +22,153 @@
 
         const Details = (props) => {
 
-            return (
-            <div>
+            //return (
+            //<div>
 
-                <form>
-                    <label>Model:</label>
+                //<form>
+                   // <label>Model:</label>
 
 
-                    <input
-                        type="text"
-                        required
-                        name="model"
+                   // <input
+                       // type="text"
+                       // required
+                        //name="model"
+                        /////////value={props.item.power || ""} onChange={props.handleChange} /><br/>/////
+                
+                 //   />
+                
+
+                  //  <label>Year:</label>
+
+                    //<input
+                      //  type="text"
+                      //  name="year"
                         //value={props.item.power || ""} onChange={props.handleChange} /><br/>//
                 
-                    />
+                   // />
                 
+                   // <textarea
+                    //    required
+                   // ></textarea>
 
-                    <label>Year:</label>
-
-                    <input
-                        type="text"
-                        name="year"
+                   // <label>Engine</label>
+                    //<input
+                    //    type="text"
+                        
+                    //    name="engine"
                         //value={props.item.power || ""} onChange={props.handleChange} /><br/>//
                 
-                    />
-                
-                    <textarea
-                        required
-                    ></textarea>
+                    ///>
+                    //<textarea
+                        
+                   // ></textarea>
+                   // <label>Power</label>
 
-                    <label>Engine</label>
-                    <input
-                        type="text"
+                   // <input
+                    //    type="text"
                         
-                        name="engine"
-                        //value={props.item.power || ""} onChange={props.handleChange} /><br/>//
-                
-                    />
-                    <textarea
-                        
-                    ></textarea>
-                    <label>Power</label>
-
-                    <input
-                        type="text"
-                        
-                        name="power"
+                    //    name="power"
 
                         //value={props.item.power || ""} onChange={props.handleChange} /><br/>//
                 
-                    />
+                   ///>
 
-                    <label>Ingnition</label>
-                    <input
-                        type="text"
+                   // <label>Ingnition</label>
+                    //<input
+                     //   type="text"
                         
-                        name="ignition"
+                     //   name="ignition"
                         //value={props.item.power || ""} onChange={props.handleChange} /><br/>//
                 
-                    />
-                    <textarea
+                    ///>
+                    //<textarea
                         
-                    ></textarea>
-                    <select>
-                        <option value="mario">mario</option>
-                        <option value="mario">mario</option>
-                    </select>
+                    //></textarea>
+                    //<select>
+                    //    <option value="mario">mario</option>
+                    //    <option value="mario">mario</option>
+                   // </select>
                 
-                </form> 
-                <button>Add new vehicle</button>
-                <button name="clear" onClick={props.clearForm}>Clear</button>&nbsp;
-                <button name="save" onClick={props.saveItem}>Save</button>&nbsp;
-                <button name="delete" onClick={props.deleteItem}>Delete</button>
+                //</form> 
+                //<button>Add new vehicle</button>
+                //<button name="clear" onClick={props.clearForm}>Clear</button>&nbsp;
+               // <button name="save" onClick={props.saveItem}>Save</button>&nbsp;
+               // <button name="delete" onClick={props.deleteItem}>Delete</button>
                    
-            </div>
+            ///</div>
 
-            )
+           // )
 
 
 
         }
 
-       
+       // the parent component
 
     const CarsApp = (props) => {
         console.log(props)
         console.log("hello" + props.volkwagens);
 
+        const [selectedItem, setselectedItem] = React.useState();
+
         //line 59 of github/brenden west/it122/9_effects/views/home.ejs
         const itemClick = (e) => {
-            console.log('item clicked')
-            console.log(e.target.innerText);
-            let found = cars.find((item) => { return item.id == e.target.innerText});
+            
+            let found = cars.find((item) => { return item.model == e.target.innerText});
             console.log(found)
+
+            setselectedItem(found);
 
 
             
         }
+
+        const Details = (props) => {
+
+            return (
+                <div>
+                <h3> Car Details </h3>
+                 {props.item &&
+                <ul>
+                <li><b>Model</b>: {props.item.model}</li>
+                <li><b>Year</b>: {props.item.year}</li>
+                <li><b>engine</b>: {props.item.engine}</li>
+                <li><b>Power</b>: {props.item.power}</li>
+                <li><b>ignition</b>: {props.item.ignition}</li>
+                </ul>
+
+                 }
+                 </div>
+                
+                )
+            
+            
+
+        }
+
+
+
         const listItems = props.volkwagens.map((item) => 
         <li key={item._id} onClick={itemClick}>{item.model}</li>);
-         
+
+        
        
         return ( 
             <div>
             <ul>{listItems}</ul>
-            <Details />
+            <hr />
+            <Details item= {selectedItem} />
+            
             </div>
+            
         );
+
+       
 
 
 
       
-     }
+    }
         
 
 
