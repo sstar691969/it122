@@ -106,21 +106,32 @@
        // the parent component
 
     const CarsApp = (props) => {
-        console.log(props)
-        console.log("hello" + props.volkwagens);
+        //console.log(props)
+        //console.log("hello" + props.volkwagens);
 
         const [selectedItem, setselectedItem] = React.useState();
 
         //line 59 of github/brenden west/it122/9_effects/views/home.ejs
         const itemClick = (e) => {
-            
+            //console.log(e)
             let found = cars.find((item) => { return item.model == e.target.innerText});
-            console.log(found)
-
-            setselectedItem(found);
-
-
             
+            setselectedItem(found);    
+        }
+            //added 8/20/23
+        const clearForm = () => {
+            setselectedItem({});
+        }
+
+            //{ ...selectedItem };
+        const itemChanged = (e) => {
+            console.log(e.target)
+            let field = e.target.model;
+            let newItem = { ...selectedItem };
+            newItem[field] = e.target.value;
+            console.log(newItem)
+            setselectedItem(newItem);
+ 
         }
 
         const Details = (props) => {
@@ -129,61 +140,38 @@
                 <div>
                 <h3> Car Details </h3>
                  {props.item &&
-                <ul>
-                <li><b>Model</b>: {props.item.model}</li>
-                <li><b>Year</b>: {props.item.year}</li>
-                <li><b>engine</b>: {props.item.engine}</li>
-                <li><b>Power</b>: {props.item.power}</li>
-                <li><b>ignition</b>: {props.item.ignition}</li>
-                </ul>
-
+                <form>
+                <b>Model</b>: <input type="text" name="model" onChange={props.changeHandler} value={props.item.model || ''} />
+                <b>Year</b>: <input type="text" name="year" onChange={props.changeHandler} value={props.item.year || ''} />
+                <b>engine</b>: <input type="text" name="engine" onChange={props.changeHandler} value={props.item.engine || ''} />
+                <b>Power</b>: <input type="text" name="power" onChange={props.changeHandler} value={props.item.power || ''} />
+                <b>ignition</b>: <input type="text" name="ignition" onChange={props.changeHandler} value={props.item.ignition || ''} />
+                </form>
+                
                  }
+                 <button name="clear" onClick={props.clearForm}>Clear</button>&nbsp;
                  </div>
                 
                 )
-            
-            
-
         }
-
-
-
         const listItems = props.volkwagens.map((item) => 
         <li key={item._id} onClick={itemClick}>{item.model}</li>);
 
-        
-       
         return ( 
             <div>
             <ul>{listItems}</ul>
             <hr />
-            <Details item= {selectedItem} />
+            <Details item= {selectedItem} changeHandler={itemChanged}/>
             
             </div>
             
         );
-
-       
-
-
-
       
     }
         
-
-
-
-       
-
-        
-    
-
     ReactDOM.render(
         <div><CarsApp volkwagens={cars}/></div>,
         document.getElementById('root'));
-
-        
-    
 
 </script>
 
