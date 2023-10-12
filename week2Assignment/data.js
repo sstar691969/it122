@@ -11,7 +11,7 @@ const car_volkwagen = [
 
     {id : 5, model : "Atlas", year : 2023, engine : 'v8', power : 'windows', ignition : 'keyless' },
 
-    {id : 6, model : "Iguann", year : 2023, engine : 'v8', power : 'windows', ignition : 'keyless' }
+    {id : 6, model : "Iguan", year : 2023, engine : 'v8', power : 'windows', ignition : 'keyless' }
     ];
 
     //cars.reverse();
