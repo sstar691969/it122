@@ -6,7 +6,8 @@ import { connectionString } from '../models/credentials.js';
 mongoose.connect(connectionString, {
     dbName: 'class-itprojects',  //or "cars". collection name: cars
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    //useFindAndModify: false
 });
 // ('open,) is corrected change below
 mongoose.connection.on('open', () => {
