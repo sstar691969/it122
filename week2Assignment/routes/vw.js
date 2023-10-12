@@ -4,7 +4,7 @@ let express = require('express')
 let router = express.Router()
 
 router.get('/vw', (req, res) => { 
-    res.send('You have requested a vw')
+    res.send('You have requested an vw')
 })
 
 module.exports = router
