@@ -100,6 +100,22 @@ app.get("/api/cars/delete/:id",(req,res) => {
     .catch(err => next(err));
 });
 
+app.post('/api/v1/add/', (req,res, next) => {
+    // find & update existing item, or add new 
+    if (!req.body._id) { // insert new document
+        let auto = new Auto(req.body);
+        auto.save((err,newAuto) => {
+            if (err) return next(err);
+            res.json({updated: 0, _id: newAuto._id});
+        });
+    } else { // update existing document
+        Auto.updateOne({ _id: req.body._id}, {model:req.body.model, year: req.body.year, engine: req.body.engine,  power: req.body.power, ignition: req.body.ignition}, (err, result) => {
+            if (err) return next(err);
+            res.json({updated: result.nModified, _id: req.body._id});
+        });
+    }
+});
+
 // use Postman app with this api post //
 // why add async(req,res) =>{}//
 app.post("/api/cars/update/id",(req,res) => {

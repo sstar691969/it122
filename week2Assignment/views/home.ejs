@@ -24,12 +24,35 @@
        // the parent component
 
     const CarsApp = (props) => {
+
+        
         
         //console.log(props)
         //console.log("hello" + props.volkwagens);
        
-        //const [items, setItems] = React.useState([]);
+        const [items, setItems] = React.useState([]);
         const [selectedItem, setselectedItem] = React.useState({});
+
+        // load data after component has rendered
+        React.useEffect(() => {
+            const fetchData = async () => {
+                fetch("/api/cars").then(res => res.json())
+                .then((json) => {
+                    setItems(json);
+                })
+            }
+            fetchData()
+        }, []);
+
+        const Cars = (props) => {
+        // props is an array
+        const listItems = props.data.map((item) =>
+        <li key={item._id} id={item._id} onClick={props.clickHandler}>
+            {item.model}
+        </li>);
+        return <ul>{listItems}</ul>
+    }
+
 
         
         
@@ -40,11 +63,12 @@
         }
 
         const saveItem = () => {
-            if (!selectedItem.title) {
+            if (!selectedItem.model) {
               return;
             }
+            
             //fetch("/api/add/", {
-            fetch("/api/v1/add/", {
+            fetch("/api/v1/add/", {    
               method: "POST",
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(selectedItem)
@@ -52,11 +76,11 @@
             .then(res => res.json())
             .then((data) => {
                 // if item has no _id, it wasn't previously saved in DB
-                if (!selectedItem.model) {
-                    selectedItem.model = data.model;
+                if (!selectedItem._id) {
+                    selectedItem._id = data._id;
                     setselectedItem(selectedItem);
                     // update items list
-                    let newItems = [...cars];
+                    let newItems = [...items];
                     newItems.push(selectedItem);
                     setItems(newItems);
                 }
@@ -65,16 +89,16 @@
         const deleteItem = () => {
             let m = selectedItem.model;
             // delete item from DB
-            fetch(`/api/v1/delete/${m}`)
+            fetch(`/api/cars/delete/${m}`)
             .then(res => res.json())
             .then((data) => {
                 // remove item from UI list
-                  const newItems = model.filter((item) => {
+                  const newItems = items.filter((item) => {
                     return item.model !== m;
                   });
               setItems(newItems);
               // clear form
-              setCurrentItem({})
+              setselectedItem({});
             });
         }
         //line 59 of github/brenden west/it122/9_effects/views/home.ejs
@@ -129,7 +153,8 @@
         return (
             <div> 
                 <h2>Car Inventory</h2>
-                <ul>{listItems}</ul>
+                
+                <Cars data={items} clickHandler={itemClick} />
                
                 <ItemDetails item={selectedItem}
                   changeHandler={itemChanged}
