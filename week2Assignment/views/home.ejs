@@ -109,7 +109,7 @@
         }
         
         // itemChanged is a variable/function name: then (e) e or any letter is used as a html page "event" or (e). Javascript function "" =>"" {console.log(e.target)}
-        const itemChanged = (e) => {
+        const changeHandler = (e) => {
             console.log(e.target)
             let field = e.target.name;
             let newItem = { ...selectedItem };
@@ -156,8 +156,9 @@
                 
                 <Cars data={items} clickHandler={itemClick} />
                
-                <ItemDetails item={selectedItem}
-                  changeHandler={itemChanged}
+                <ItemDetails 
+                  item={selectedItem}
+                  changeHandler={changeHandler}
                   clearForm={clearForm}
                   saveItem={saveItem}
                   deleteItem={deleteItem}

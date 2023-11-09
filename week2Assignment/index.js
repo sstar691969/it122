@@ -8,7 +8,7 @@ import express from 'express';
 
 
 //import { getItem } from "./data.js";
-import { Cars } from "../models/Cars.js";
+import { Cars } from "../models/truck.js";
 
 //install the express and ejs node modules
 //convert your index.js module to use Express app syntax
@@ -103,10 +103,10 @@ app.get("/api/cars/delete/:id",(req,res) => {
 app.post('/api/v1/add/', (req,res, next) => {
     // find & update existing item, or add new 
     if (!req.body._id) { // insert new document
-        let Cars = new Cars(req.body);
-        Cars.save((err,newCars) => {
+        let truck = new Cars(req.body);
+        truck.save((err,newTruck) => {
             if (err) return next(err);
-            res.json({updated: 0, _id: newAuto._id});
+            res.json({updated: 0, _id: newTruck._id});
         });
     } else { // update existing document
         Cars.updateOne({ _id: req.body._id}, {model:req.body.model, year: req.body.year, engine: req.body.engine,  power: req.body.power, ignition: req.body.ignition}, (err, result) => {
