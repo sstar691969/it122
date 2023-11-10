@@ -25,6 +25,8 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.static('public'))
 app.use(express.json()); //Used to parse JSON bodies
 
+import cors from 'cors';
+app.use('/api', cors()); // set Access-Control-Allow-Origin header for api route
 
 //app.use('/css', express.static(dirname + 'public/css'))
 //app.use('/js', express.static(__dirname + 'public/js'))
@@ -100,10 +102,10 @@ app.get("/api/cars/delete/:id",(req,res) => {
     .catch(err => next(err));
 });
 
-app.post('/api/v1/add/', (req,res, next) => {
+app.post('/api/v1/add', (req,res, next) => {
     // find & update existing item, or add new 
     if (!req.body._id) { // insert new document
-        let truck = new Cars(req.body);
+        let truck = new Truck(req.body);
         truck.save((err,newTruck) => {
             if (err) return next(err);
             res.json({updated: 0, _id: newTruck._id});
