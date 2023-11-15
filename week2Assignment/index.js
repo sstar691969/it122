@@ -103,20 +103,20 @@ app.get("/api/cars/delete/:id",(req,res) => {
 });
 
 app.post('/api/v1/add', (req,res, next) => {
+    console.log(req.body);
     // find & update existing item, or add new 
-    if (!req.body._id) { // insert new document
-        let truck = new Truck(req.body);
-        truck.save((err,newTruck) => {
-            if (err) return next(err);
-            res.json({updated: 0, _id: newTruck._id});
-        });
-    } else { // update existing document
-        Cars.updateOne({ _id: req.body._id}, {model:req.body.model, year: req.body.year, engine: req.body.engine,  power: req.body.power, ignition: req.body.ignition}, (err, result) => {
-            if (err) return next(err);
+     // update existing document
+        Cars.updateOne({ _id: req.body._id}, {model:req.body.model, year: req.body.year, engine: req.body.engine,  power: req.body.power, ignition: req.body.ignition}, {upsert:true})
+        .then((result) => {
             res.json({updated: result.nModified, _id: req.body._id});
-        });
-    }
+        })
+        .catch(err => console.log(err));
+       
+        
+       
+    
 });
+
 
 // use Postman app with this api post //
 // why add async(req,res) =>{}//
